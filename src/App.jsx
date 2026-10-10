@@ -9,7 +9,6 @@ const FROM = [{ yPercent: 110 }, { xPercent: 110 }, { yPercent: -110 }, { xPerce
 
 const EMAIL = 'flaviodonnini07@gmail.com'
 const WHATSAPP = '393516988910'
-const PROJECT_PRICE = 300 // € una tantum
 const emailLink = (subject) => `mailto:${EMAIL}?subject=${encodeURIComponent(subject)}`
 const whatsappLink = (message) => `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(message)}`
 
@@ -64,25 +63,26 @@ function PerugiaMap() {
 }
 
 function Calculator() {
-  const [price, setPrice] = useState(90)
-  const [nights, setNights] = useState(12)
+  const [price, setPrice] = useState('90')
+  const [nights, setNights] = useState('12')
   const [fee, setFee] = useState(15)
 
-  const perNight = price * (fee / 100)
-  const perYear = perNight * nights * 12
-  const breakEven = perNight > 0 ? Math.ceil(PROJECT_PRICE / perNight) : null
+  const priceValue = Math.max(0, Number(price) || 0)
+  const nightsValue = Math.min(31, Math.max(0, Number(nights) || 0))
+  const perNight = priceValue * (fee / 100)
+  const perYear = perNight * nightsValue * 12
 
   return (
     <div className="calc">
       <label>
         Prezzo a notte (€)
-        <input type="number" inputMode="numeric" min="0" value={price}
-          onChange={(e) => setPrice(Math.max(0, Number(e.target.value) || 0))} />
+        <input type="number" inputMode="numeric" min="0" step="1" value={price}
+          onChange={(e) => setPrice(e.target.value)} />
       </label>
       <label>
         Notti prenotate al mese
-        <input type="number" inputMode="numeric" min="0" max="31" value={nights}
-          onChange={(e) => setNights(Math.min(31, Math.max(0, Number(e.target.value) || 0)))} />
+        <input type="number" inputMode="numeric" min="0" max="31" step="1" value={nights}
+          onChange={(e) => setNights(e.target.value)} />
       </label>
       <label>
         Commissione della piattaforma: <strong>{fee}%</strong>
@@ -92,10 +92,10 @@ function Calculator() {
       <div className="calc-result" aria-live="polite">
         <p>Ogni anno lasci alle piattaforme circa</p>
         <strong>{eur(perYear)}</strong>
-        {breakEven && (
+        {perYear > 0 && (
           <p className="calc-note">
-            Ogni notte prenotata in diretta ti lascia {eur(perNight)} in più. Con {breakEven} notti dirette il sito
-            si è già ripagato.
+            Questa cifra può restare nella tua attività con prenotazioni dirette. Ti aiuto a creare un sito su misura
+            per attirarle.
           </p>
         )}
       </div>
