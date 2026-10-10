@@ -127,7 +127,7 @@ h2 { font-size: clamp(30px, 7vw, 52px); font-weight: 700; line-height: 1.05; let
   min-height: 52px; width: 100%; padding: 0 16px; border: 2px solid var(--line); border-radius: 14px;
   background: var(--bg); color: var(--ink); font: inherit; font-size: 18px;
 }
-.calc input[type='range'] { width: 100%; accent-color: var(--forest); height: 32px; }
+.calc input[type='range'] { width: 100%; accent-color: var(--forest); height: 32px; touch-action: pan-y; }
 .calc-result { padding: 22px; border-radius: 20px; background: var(--forest); color: #fff; }
 .calc-result p { margin: 0; font-size: 15px; }
 .calc-result strong { display: block; margin: 4px 0 8px; color: var(--sun); font-family: var(--display); font-size: clamp(44px, 12vw, 64px); line-height: 1; letter-spacing: -0.03em; overflow-wrap: anywhere; }

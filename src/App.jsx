@@ -66,6 +66,16 @@ function Calculator() {
   const [price, setPrice] = useState('90')
   const [nights, setNights] = useState('12')
   const [fee, setFee] = useState(15)
+  const dismissKeyboard = (event) => {
+    if (event.key === 'Enter') {
+      event.preventDefault()
+      event.currentTarget.blur()
+    }
+  }
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    event.currentTarget.querySelector('input:focus')?.blur()
+  }
 
   const priceValue = Math.max(0, Number(price) || 0)
   const nightsValue = Math.min(31, Math.max(0, Number(nights) || 0))
@@ -73,16 +83,17 @@ function Calculator() {
   const perYear = perNight * nightsValue * 12
 
   return (
-    <div className="calc">
+    <form className="calc" noValidate onSubmit={handleSubmit}>
+      <button type="submit" hidden>Calcola</button>
       <label>
         Prezzo a notte (€)
-        <input type="number" inputMode="numeric" min="0" step="1" value={price}
-          onChange={(e) => setPrice(e.target.value)} />
+        <input type="number" inputMode="numeric" enterKeyHint="done" min="0" step="1" value={price}
+          onChange={(e) => setPrice(e.target.value)} onKeyDown={dismissKeyboard} />
       </label>
       <label>
         Notti prenotate al mese
-        <input type="number" inputMode="numeric" min="0" max="31" step="1" value={nights}
-          onChange={(e) => setNights(e.target.value)} />
+        <input type="number" inputMode="numeric" enterKeyHint="done" min="0" max="31" step="1" value={nights}
+          onChange={(e) => setNights(e.target.value)} onKeyDown={dismissKeyboard} />
       </label>
       <label>
         Commissione della piattaforma: <strong>{fee}%</strong>
@@ -103,7 +114,7 @@ function Calculator() {
         Inizia a risparmiare ora
       </a>
       <p className="fine">Calcolo indicativo: cambia i valori con i tuoi. Vale per le notti che passano dal canale diretto.</p>
-    </div>
+    </form>
   )
 }
 
