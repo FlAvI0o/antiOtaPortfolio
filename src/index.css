@@ -10,6 +10,22 @@
   --body: 'Instrument Sans Variable', system-ui, sans-serif;
 }
 
+@font-face {
+  font-family: 'Bricolage Grotesque Variable';
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url('/fonts/bricolage-grotesque-latin-wght-normal.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Instrument Sans Variable';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('/fonts/instrument-sans-latin-wght-normal.woff2') format('woff2');
+}
+
 * { box-sizing: border-box; }
 
 html {
@@ -102,8 +118,6 @@ h2 { font-size: clamp(30px, 7vw, 52px); font-weight: 700; line-height: 1.05; let
 .map-caption { margin: -4px 0 0 13%; color: var(--muted); font-size: 11px; font-weight: 700; letter-spacing: 0.12em; }
 .map-caption span { padding-inline: 4px; color: #c98c10; }
 
-.portrait { width: 160px; aspect-ratio: 4 / 5; object-fit: cover; object-position: center; border-radius: 4px; }
-
 /* Sections */
 .sec { display: grid; gap: 28px; padding: 64px 0; border-top: 1px solid var(--line); }
 
@@ -130,6 +144,7 @@ h2 { font-size: clamp(30px, 7vw, 52px); font-weight: 700; line-height: 1.05; let
 .price strong { color: var(--sun); font-family: var(--display); font-size: 26px; margin-right: 6px; }
 
 .about { grid-template-columns: 1fr; align-items: center; }
+.about > div { width: 100%; max-width: 620px; }
 .about p { max-width: 46ch; margin: 16px 0 0; }
 .contact .actions { display: grid; gap: 12px; max-width: 420px; }
 
@@ -151,8 +166,6 @@ h2 { font-size: clamp(30px, 7vw, 52px); font-weight: 700; line-height: 1.05; let
   .calc-result { grid-column: 2; grid-row: 1 / span 3; align-self: stretch; }
   .calc-cta { grid-column: 1; grid-row: 4; }
   .fine { grid-column: 1; grid-row: 5; }
-  .about { grid-template-columns: auto 1fr; gap: 48px; }
-  .portrait { width: 180px; }
   .contact .actions { grid-auto-flow: column; max-width: none; justify-content: start; }
   .sec { padding: 96px 0; }
 }
@@ -165,9 +178,7 @@ h2 { font-size: clamp(30px, 7vw, 52px); font-weight: 700; line-height: 1.05; let
   }
   .wordmark { font-size: min(calc((100vw - 40px) / 3.6), 120px); }
   .map-figure { aspect-ratio: 8 / 5; max-width: 480px; margin-inline: auto; }
-  .about { justify-items: center; gap: 24px; }
-  .about > div { width: 100%; max-width: 620px; }
-  .portrait { justify-self: center; width: min(48vw, 180px); }
+  .about { justify-items: center; }
   .about p { margin-top: 12px; }
 }
 

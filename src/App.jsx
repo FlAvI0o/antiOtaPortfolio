@@ -1,8 +1,6 @@
 import { useLayoutEffect, useRef, useState } from 'react'
 import gsap from 'gsap'
 import Lenis from 'lenis'
-import '@fontsource-variable/bricolage-grotesque'
-import '@fontsource-variable/instrument-sans'
 import './index.css'
 
 const WORD = 'DIRECT'
@@ -240,7 +238,6 @@ export default function App() {
         </section>
 
         <section className="shell sec about" id="chi-sono">
-          <img className="portrait" src="/hotel.jpg" alt="Flavio, sviluppatore web" />
           <div>
             <h2>Dietro Direct c'è una persona sola.</h2>
             {/* PERSONALIZZA: 2-3 frasi vere su di te, niente di inventato */}
